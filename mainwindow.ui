@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>952</width>
+    <height>677</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Gestion des Clients</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>110</y>
+      <width>741</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Thème Rose/Saumon créatif pour l'interface d'événements */
+
+/* Style général de la fenêtre */
+QWidget {
+    background-color: #fff0f5; /* Rose lavande très clair */
+    color: #8b475d; /* Rose foncé */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* ===== STYLE DES ONGLETS (TAB WIDGET) ===== */
+QTabWidget::pane {
+    border: 3px solid #ffb6c1;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 5px;
+}
+
+QTabWidget::tab-bar {
+    alignment: center;
+}
+
+QTabBar::tab {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #ffe4e9, stop: 0.4 #ffd1dc, stop: 1 #ffb6c1);
+    border: 2px solid #ff91a4;
+    border-bottom: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    min-width: 90px;
+    padding: 10px 15px;
+    margin-right: 2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8b475d;
+}
+
+QTabBar::tab:selected {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #ffffff, stop: 1 #ffd1dc);
+    border: 2px solid #ff6b8b;
+    font-weight: bolder;
+}
+
+QTabBar::tab:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #ffffff, stop: 1 #ff91a4);
+}
+
+/* Style des boutons principaux */
+QPushButton {
+    background-color: #ffd1dc; /* Rose pastel */
+    color: #8b475d;
+    border: 2px solid #ffb6c1;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-weight: bold;
+    margin: 3px;
+    font-size: 14px;
+}
+
+QPushButton:hover {
+    background-color: #ffb6c1;
+    border: 2px solid #ff91a4;
+}
+
+QPushButton:pressed {
+    background-color: #ff91a4;
+}
+
+/* Style spécifique pour chaque bouton avec des couleurs différentes */
+QPushButton[text=&quot;Ajouter&quot;] {
+    background-color: #ffd1dc; /* Rose clair */
+    border: 2px solid #ffb6c1;
+    color: #8b475d;
+}
+
+QPushButton[text=&quot;Afficher&quot;] {
+    background-color: #ffcccb; /* Saumon clair */
+    border: 2px solid #ffa07a;
+    color: #8b475d;
+}
+
+QPushButton[text=&quot;Modifier&quot;] {
+    background-color: #f8c8dc; /* Rose poudré */
+    border: 2px solid #f4acb6;
+    color: #8b475d;
+}
+
+QPushButton[text=&quot;Supprimer&quot;] {
+    background-color: #ffb7c5; /* Rose corail */
+    border: 2px solid #ff91a4;
+    color: #8b475d;
+}
+
+/* Style des champs de saisie */
+QLineEdit {
+    background-color: #ffffff;
+    border: 2px solid #ffd1dc;
+    border-radius: 10px;
+    padding: 8px 12px;
+    color: #8b475d;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 2px solid #ff91a4;
+    background-color: #fffafafa;
+}
+
+/* Style des labels */
+QLabel {
+    color: #8b475d;
+    font-weight: bold;
+    padding: 5px;
+    background-color: rgba(255, 240, 245, 0.7); /* Fond rose très léger */
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Style du titre &quot;Ajouter un evenement&quot; */
+QLabel[text=&quot;Ajouter un evenement&quot;] {
+    font-size: 18px;
+    font-weight: bold;
+    color: #8b475d;
+    background-color: rgba(255, 209, 220, 0.8);
+    padding: 10px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* Style du bouton &quot;ajouter&quot; en bas */
+QPushButton[text=&quot;ajouter&quot;] {
+    background-color: #ffb6c1; /* Rose moyen */
+    border: 2px solid #ff91a4;
+    color: #8b475d;
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+QPushButton[text=&quot;ajouter&quot;]:hover {
+    background-color: #ff91a4;
+}
+
+/* Style pour les champs numériques */
+QLineEdit[placeholderText=&quot;0&quot;] {
+    background-color: #fffaf0;
+    border: 2px solid #ffebcd;
+}
+
+/* Style pour le champ date */
+QLineEdit[text=&quot;1/1/2000&quot;] {
+    background-color: #fff0f5;
+    border: 2px solid #ffd1dc;
+}
+
+/* Style pour les QTextEdit dans les table widgets */
+QTextEdit {
+    background-color: #ffffff;
+    border: 2px solid #ffd1dc;
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: #8b475d;
+    font-size: 14px;
+    selection-background-color: #ffb6c1;
+}
+
+QTextEdit:focus {
+    border: 2px solid #ff91a4;
+    background-color: #fffafafa;
+}
+
+/* Style pour les QTableWidget */
+QTableWidget {
+    background-color: #ffffff;
+    border: 2px solid #ffd1dc;
+    border-radius: 8px;
+    gridline-color: #ffd1dc;
+    font-size: 14px;
+}
+
+QTableWidget::item {
+    padding: 6px;
+    border-bottom: 1px solid #ffe4e9;
+    color: #8b475d;
+}
+
+QTableWidget::item:selected {
+    background-color: #ffb6c1;
+    color: #8b475d;
+}
+
+QHeaderView::section {
+    background-color: #ffd1dc;
+    color: #8b475d;
+    padding: 8px;
+    border: 1px solid #ffb6c1;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Effets d'ombre légers pour la profondeur */
+QPushButton, QLineEdit, QLabel, QTextEdit, QTableWidget {
+    border-radius: 10px;
+}
+
+/* Style pour le layout général */
+QWidget#centralWidget {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #fff0f5, stop: 1 #ffe4e9);
+    border-radius: 15px;
+}
+
+/* Style pour les cases à cocher */
+QCheckBox {
+    color: #8b475d;
+    font-size: 14px;
+    spacing: 6px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffb6c1;
+    border-radius: 4px;
+    background: white;
+}
+
+QCheckBox::indicator:checked {
+    background: #ff91a4;
+    border: 2px solid #ff6b8b;
+}</string>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Ajouter</string>
+     </attribute>
+     <widget class="QWidget" name="formLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>19</y>
+        <width>641</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>ID_EMPLOYEE:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>NUM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>NOM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>MAIL:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEdit_2"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEdit_3"/>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEdit_4"/>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Ajouter</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Modifier</string>
+     </attribute>
+     <widget class="QWidget" name="formLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>29</y>
+        <width>541</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>ID_EMPLOYEE</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>NUM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>MAIL:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>NOM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit_6"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEdit_7"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEdit_8"/>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEdit_9"/>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>Modifier</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Chercher</string>
+     </attribute>
+     <widget class="QWidget" name="formLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>50</y>
+        <width>521</width>
+        <height>99</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_4">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>Entre l'ID:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit_10"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="text">
+          <string>PushButton</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QTableView" name="tableView">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>171</y>
+        <width>521</width>
+        <height>211</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Supprimer</string>
+     </attribute>
+     <widget class="QWidget" name="formLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>69</y>
+        <width>561</width>
+        <height>99</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Entrez l' ID:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit_5"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>supprimer</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
